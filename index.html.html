@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dennis Caceta Consultoria — Logística, Operações Portuárias &amp; Melhoria de Processos</title>
+<meta name="description" content="Consultoria em logística, operações portuárias e melhoria de processos. Modelagem, simulação, BI e otimização operacional para terminais e cadeias logísticas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  /* ============ TOKENS ============ */
+  :root{
+    --ink:      #0A1720;
+    --ink-2:    #0F1F29;
+    --ink-3:    #16303e;
+    --line:     rgba(169,180,188,0.16);
+    --paper:    #E9E4D6;
+    --amber:    #E38B29;
+    --amber-2:  #ffb066;
+    --teal:     #52C7B8;
+    --teal-dim: #2f6e66;
+    --fog:      #9FADB6;
+    --white:    #F5F3EE;
+    --maxw:     1180px;
+    --radius:   2px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *, *::before, *::after{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
+
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--white);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:64px 64px;
+    background-position:center top;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  ::selection{ background:var(--amber); color:var(--ink); }
+
+  :focus-visible{
+    outline:2px solid var(--teal);
+    outline-offset:3px;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Big Shoulders Display', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    margin:0;
+    font-weight:700;
+  }
+
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--teal);
+    display:flex;
+    align-items:center;
+    gap:0.65em;
+  }
+  .eyebrow::before{
+    content:'';
+    width:7px; height:7px;
+    border-radius:50%;
+    background:var(--amber);
+    box-shadow:0 0 0 3px rgba(227,139,41,0.18);
+    flex:none;
+  }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+  section{ position:relative; }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:0.55em;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:0.95em 1.5em;
+    border-radius:var(--radius);
+    border:1px solid var(--line);
+    transition:border-color .2s ease, background .2s ease, color .2s ease, transform .15s ease;
+    cursor:pointer;
+  }
+  .btn-primary{ background:var(--amber); color:var(--ink); border-color:var(--amber); }
+  .btn-primary:hover{ background:var(--amber-2); transform:translateY(-1px); }
+  .btn-ghost{ color:var(--white); }
+  .btn-ghost:hover{ border-color:var(--teal); color:var(--teal); }
+  .btn-arrow::after{ content:'→'; transition:transform .2s ease; }
+  .btn-arrow:hover::after{ transform:translateX(3px); }
+
+  /* ============ NAV ============ */
+  header.site{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:rgba(10,23,32,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    max-width:var(--maxw); margin:0 auto; padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{ display:flex; align-items:center; gap:0.7em; font-family:'Big Shoulders Display'; font-size:1.15rem; letter-spacing:0.02em; text-transform:uppercase; }
+  .brand .mark{
+    width:34px; height:34px; border:1px solid var(--teal); border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--teal);
+    position:relative; flex:none;
+  }
+  .brand .mark::after{
+    content:''; position:absolute; inset:5px; border-radius:50%;
+    background:conic-gradient(from 0deg, transparent 0deg, rgba(82,199,184,0.55) 40deg, transparent 90deg);
+    animation:sweep 4s linear infinite;
+  }
+  @keyframes sweep{ to{ transform:rotate(360deg); } }
+
+  nav.links{ display:flex; gap:2.2em; font-size:0.85rem; }
+  nav.links a{ position:relative; color:var(--fog); transition:color .2s ease; }
+  nav.links a:hover{ color:var(--white); }
+  .nav-cta{ display:flex; align-items:center; gap:16px; }
+  .nav-toggle{ display:none; background:none; border:1px solid var(--line); color:var(--white); width:40px; height:40px; border-radius:var(--radius); cursor:pointer; }
+
+  @media (max-width:860px){
+    nav.links{ display:none; }
+    .nav-toggle{ display:block; }
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    padding:170px 0 90px;
+    overflow:hidden;
+    position:relative;
+  }
+  .radar-field{
+    position:absolute; right:-160px; top:80px; width:640px; height:640px;
+    pointer-events:none;
+    opacity:0.55;
+  }
+  .radar-field svg{ width:100%; height:100%; }
+  .radar-sweep{ transform-origin:320px 320px; animation:radarspin 7s linear infinite; }
+  @keyframes radarspin{ to{ transform:rotate(360deg); } }
+  .blip{ animation:blink 3.4s ease-in-out infinite; }
+  .blip.b2{ animation-delay:.9s; }
+  .blip.b3{ animation-delay:1.8s; }
+  .blip.b4{ animation-delay:2.6s; }
+  @keyframes blink{ 0%,100%{ opacity:.15; } 45%{ opacity:1; } 60%{ opacity:.25; } }
+
+  .hero-inner{ position:relative; max-width:760px; }
+  .hero h1{
+    font-size:clamp(2.6rem, 6.4vw, 4.6rem);
+    line-height:1.03;
+    margin:22px 0 26px;
+    color:var(--white);
+  }
+  .hero h1 span{ color:var(--amber); }
+  .hero p.lead{
+    font-size:1.12rem; color:var(--fog); max-width:560px; margin:0 0 38px;
+  }
+  .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:64px; }
+
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .stat{
+    padding:22px 24px 22px 0;
+    border-right:1px solid var(--line);
+  }
+  .stat:last-child{ border-right:none; }
+  .stat .num{ font-family:'Big Shoulders Display'; font-size:2rem; color:var(--teal); }
+  .stat .lbl{ font-family:'IBM Plex Mono'; font-size:0.68rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--fog); margin-top:4px; }
+
+  @media (max-width:760px){
+    .stat-strip{ grid-template-columns:repeat(2,1fr); }
+    .stat{ padding:18px 16px; border-right:1px solid var(--line); }
+    .stat:nth-child(2n){ border-right:none; }
+    .radar-field{ opacity:0.28; right:-260px; }
+  }
+
+  /* ============ SECTION HEADERS ============ */
+  .sec-head{ max-width:640px; margin-bottom:52px; }
+  .sec-head h2{ font-size:clamp(1.9rem,4vw,2.7rem); margin-top:14px; color:var(--white); }
+  .sec-head p{ color:var(--fog); margin-top:16px; font-size:1.02rem; }
+  .section-pad{ padding:100px 0; border-top:1px solid var(--line); }
+
+  /* ============ CHECKLIST (problem signals) ============ */
+  .manifest{ border:1px solid var(--line); background:var(--ink-2); }
+  .manifest-row{
+    display:grid; grid-template-columns:56px 1fr 130px;
+    align-items:center;
+    padding:20px 26px;
+    border-bottom:1px solid var(--line);
+    transition:background .2s ease;
+  }
+  .manifest-row:last-child{ border-bottom:none; }
+  .manifest-row:hover{ background:rgba(82,199,184,0.05); }
+  .manifest-row .tag{ font-family:'IBM Plex Mono'; color:var(--amber); font-size:0.85rem; }
+  .manifest-row .desc{ font-size:0.98rem; color:var(--white); padding-right:20px; }
+  .manifest-row .stamp{
+    font-family:'IBM Plex Mono'; font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--teal); text-align:right; white-space:nowrap;
+  }
+  @media (max-width:640px){
+    .manifest-row{ grid-template-columns:36px 1fr; row-gap:8px; }
+    .manifest-row .stamp{ grid-column:2; text-align:left; }
+  }
+
+  /* ============ SERVICES GRID (yard blocks) ============ */
+  .yard{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .block{
+    background:var(--ink-2);
+    padding:28px 24px;
+    min-height:168px;
+    display:flex; flex-direction:column; justify-content:space-between;
+    transition:background .25s ease;
+  }
+  .block:hover{ background:var(--ink-3); }
+  .block .code{ font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--teal); letter-spacing:0.1em; }
+  .block h4{ font-family:'IBM Plex Sans'; text-transform:none; font-weight:600; font-size:1.02rem; letter-spacing:0; color:var(--white); margin-top:14px; }
+  .block p{ font-size:0.88rem; color:var(--fog); margin:8px 0 0; }
+  @media (max-width:900px){ .yard{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .yard{ grid-template-columns:1fr; } }
+
+  /* ============ DASHBOARDS STRIP ============ */
+  .dash-strip{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .dash-card{
+    border:1px solid var(--line); padding:26px; background:var(--ink-2);
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .dash-card .dot-row{ display:flex; align-items:center; gap:8px; font-family:'IBM Plex Mono'; font-size:0.7rem; color:var(--fog); text-transform:uppercase; letter-spacing:0.08em; }
+  .dot-row .dot{ width:8px; height:8px; border-radius:50%; background:var(--teal); box-shadow:0 0 0 3px rgba(82,199,184,0.15); }
+  .dash-card h4{ font-family:'Big Shoulders Display'; font-size:1.25rem; color:var(--white); text-transform:none; letter-spacing:0; }
+  .dash-card p{ color:var(--fog); font-size:0.88rem; margin:0; }
+  .dash-card .btn{ margin-top:auto; align-self:flex-start; }
+  @media (max-width:900px){ .dash-strip{ grid-template-columns:1fr; } }
+
+  /* ============ LOGBOOK (case studies) ============ */
+  .log{ border-top:1px solid var(--line); }
+  .log-entry{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:40px;
+    padding:44px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .log-meta{ font-family:'IBM Plex Mono'; }
+  .log-meta .code{ color:var(--amber); font-size:0.95rem; letter-spacing:0.04em; }
+  .log-meta .loc{ color:var(--fog); font-size:0.78rem; margin-top:8px; line-height:1.5; }
+  .log-body h3{ font-family:'Big Shoulders Display'; font-size:1.5rem; text-transform:none; letter-spacing:0; color:var(--white); margin-bottom:14px; line-height:1.15; }
+  .log-body p{ color:var(--fog); font-size:0.95rem; max-width:700px; }
+  .log-metrics{ display:flex; gap:26px; margin-top:18px; flex-wrap:wrap; }
+  .log-metrics .m{ font-family:'IBM Plex Mono'; font-size:0.78rem; color:var(--teal); border-left:2px solid var(--teal); padding-left:10px; }
+  @media (max-width:760px){
+    .log-entry{ grid-template-columns:1fr; gap:14px; }
+  }
+
+  /* ============ PROFILE ============ */
+  .profile{
+    display:grid; grid-template-columns:220px 1fr; gap:48px; align-items:start;
+    border:1px solid var(--line); background:var(--ink-2); padding:40px;
+  }
+  .profile-badge{
+    width:100%; aspect-ratio:1; border:1px solid var(--teal); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; position:relative;
+  }
+  .profile-badge span{ font-family:'Big Shoulders Display'; font-size:2.4rem; color:var(--teal); }
+  .profile-badge::before{
+    content:''; position:absolute; inset:-1px; border-radius:50%;
+    background:conic-gradient(from 0deg, transparent 0deg, rgba(82,199,184,0.4) 60deg, transparent 130deg);
+    animation:sweep 6s linear infinite;
+  }
+  .profile h3{ font-family:'Big Shoulders Display'; font-size:1.7rem; text-transform:none; letter-spacing:0; color:var(--white); }
+  .profile .role{ font-family:'IBM Plex Mono'; font-size:0.78rem; color:var(--amber); letter-spacing:0.06em; text-transform:uppercase; margin-top:6px; }
+  .cred-list{ margin-top:22px; display:grid; gap:10px; }
+  .cred-list li{ list-style:none; color:var(--fog); font-size:0.92rem; padding-left:18px; position:relative; }
+  .cred-list li::before{ content:'—'; position:absolute; left:0; color:var(--teal); }
+  @media (max-width:700px){ .profile{ grid-template-columns:1fr; } .profile-badge{ width:120px; } }
+
+  /* ============ COMPASS (mission/vision/values) ============ */
+  .compass{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .compass-card{ background:var(--ink-2); padding:34px 28px; }
+  .compass-card .eyebrow{ margin-bottom:14px; }
+  .compass-card p, .compass-card li{ color:var(--fog); font-size:0.93rem; }
+  .compass-card ul{ margin:0; padding:0; display:grid; gap:8px; }
+  .compass-card li{ list-style:none; padding-left:16px; position:relative; }
+  .compass-card li::before{ content:'·'; position:absolute; left:0; color:var(--amber); }
+  @media (max-width:820px){ .compass{ grid-template-columns:1fr; } }
+
+  /* ============ RESEARCH ============ */
+  .paper-list{ border-top:1px solid var(--line); }
+  .paper-row{
+    display:grid; grid-template-columns:1fr 220px; gap:20px;
+    padding:20px 0; border-bottom:1px solid var(--line);
+  }
+  .paper-row p{ margin:0; font-size:0.94rem; color:var(--white); }
+  .paper-row .venue{ font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--teal); text-align:right; align-self:center; }
+  @media (max-width:700px){ .paper-row{ grid-template-columns:1fr; } .paper-row .venue{ text-align:left; } }
+
+  .press-row{ display:flex; gap:14px; flex-wrap:wrap; margin-top:30px; }
+  .press-row a{
+    font-family:'IBM Plex Mono'; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.05em;
+    border:1px solid var(--line); padding:0.7em 1.1em; color:var(--fog); transition:color .2s ease, border-color .2s ease;
+  }
+  .press-row a:hover{ color:var(--teal); border-color:var(--teal); }
+
+  /* ============ CONTACT ============ */
+  .contact{
+    text-align:center; padding:120px 0 100px;
+    border-top:1px solid var(--line);
+  }
+  .contact h2{ font-size:clamp(2.1rem,5vw,3.4rem); max-width:760px; margin:0 auto 22px; color:var(--white); }
+  .contact p{ color:var(--fog); max-width:520px; margin:0 auto 40px; }
+  .contact-ctas{ display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-bottom:56px; }
+  .contact-lines{ display:flex; justify-content:center; gap:34px; flex-wrap:wrap; font-family:'IBM Plex Mono'; font-size:0.85rem; color:var(--fog); }
+  .contact-lines a:hover{ color:var(--teal); }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:26px 0;
+    font-family:'IBM Plex Mono';
+    font-size:0.72rem;
+    color:var(--fog);
+    letter-spacing:0.02em;
+  }
+  footer .wrap{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+
+  /* reveal-on-scroll */
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav">
+    <a class="brand" href="#top"><span class="mark">DC</span> Dennis Caceta</a>
+    <nav class="links">
+      <a href="#servicos">Serviços</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#pesquisa">Pesquisa</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="https://wa.me/5513997492941" target="_blank" rel="noopener">Fale conosco</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero wrap">
+    <div class="radar-field" aria-hidden="true">
+      <svg viewBox="0 0 640 640">
+        <circle cx="320" cy="320" r="300" fill="none" stroke="#1B2F3D" stroke-width="1"/>
+        <circle cx="320" cy="320" r="220" fill="none" stroke="#1B2F3D" stroke-width="1"/>
+        <circle cx="320" cy="320" r="140" fill="none" stroke="#1B2F3D" stroke-width="1"/>
+        <circle cx="320" cy="320" r="60" fill="none" stroke="#1B2F3D" stroke-width="1"/>
+        <line x1="20" y1="320" x2="620" y2="320" stroke="#16303e" stroke-width="1"/>
+        <line x1="320" y1="20" x2="320" y2="620" stroke="#16303e" stroke-width="1"/>
+        <g class="radar-sweep">
+          <path d="M320 320 L320 20 A300 300 0 0 1 533 108 Z" fill="url(#sweepGrad)"/>
+        </g>
+        <defs>
+          <linearGradient id="sweepGrad" x1="320" y1="320" x2="533" y2="108" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#52C7B8" stop-opacity="0.45"/>
+            <stop offset="1" stop-color="#52C7B8" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <circle class="blip b1" cx="420" cy="220" r="5" fill="#E38B29"/>
+        <circle class="blip b2" cx="230" cy="410" r="5" fill="#52C7B8"/>
+        <circle class="blip b3" cx="470" cy="400" r="4" fill="#52C7B8"/>
+        <circle class="blip b4" cx="200" cy="200" r="4" fill="#E38B29"/>
+      </svg>
+    </div>
+
+    <div class="hero-inner reveal in">
+      <p class="eyebrow">23.9° S · 46.3° O — PORTO DE SANTOS, BRASIL</p>
+      <h1>SUA OPERAÇÃO TEM CAPACIDADE.<br>A PERGUNTA É SE ELA <span>APARECE NO NÚMERO.</span></h1>
+      <p class="lead">Consultoria em logística, operações portuárias e melhoria de processos. Transformamos dados operacionais em decisões práticas — para reduzir desperdício, aumentar produtividade e sustentar investimentos com evidência, não com achismo.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://wa.me/5513997492941" target="_blank" rel="noopener">Falar com Dennis Caceta</a>
+        <a class="btn btn-ghost btn-arrow" href="#projetos">Ver diário de bordo dos projetos</a>
+      </div>
+    </div>
+
+    <div class="stat-strip reveal">
+      <div class="stat"><div class="num">+30%</div><div class="lbl">Produtividade em granéis sólidos</div></div>
+      <div class="stat"><div class="num">2 Mt</div><div class="lbl">Capacidade adicional / ano</div></div>
+      <div class="stat"><div class="num">52</div><div class="lbl">Artigos técnicos publicados</div></div>
+      <div class="stat"><div class="num">3</div><div class="lbl">Dashboards públicos em operação</div></div>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEM SIGNALS ============ -->
+  <section class="section-pad wrap" id="sinais">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Diagnóstico</p>
+      <h2>Seis sinais de que o pátio está falando com você</h2>
+      <p>Se alguma destas linhas soa familiar, sua operação provavelmente já está gerando o dado — só falta alguém lendo o manifesto certo.</p>
+    </div>
+    <div class="manifest reveal">
+      <div class="manifest-row"><span class="tag">01</span><span class="desc">Filas, esperas, gargalos ou baixa produtividade recorrentes</span><span class="stamp">Operação</span></div>
+      <div class="manifest-row"><span class="tag">02</span><span class="desc">Dificuldade para dimensionar capacidade, equipes ou equipamentos</span><span class="stamp">Capacidade</span></div>
+      <div class="manifest-row"><span class="tag">03</span><span class="desc">Falta de indicadores confiáveis para tomada de decisão</span><span class="stamp">Governança</span></div>
+      <div class="manifest-row"><span class="tag">04</span><span class="desc">Layout operacional inadequado ao perfil real de carga</span><span class="stamp">Layout</span></div>
+      <div class="manifest-row"><span class="tag">05</span><span class="desc">Necessidade de justificar investimentos com evidência técnica</span><span class="stamp">Investimento</span></div>
+      <div class="manifest-row"><span class="tag">06</span><span class="desc">Processos manuais, dispersos ou pouco padronizados</span><span class="stamp">Processo</span></div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="section-pad wrap" id="servicos">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Frentes de atuação</p>
+      <h2>Onde a consultoria entra na operação</h2>
+      <p>Nos segmentos logístico, portuário, industrial e operacional — do estudo de capacidade ao treinamento da equipe que vai sustentar o ganho.</p>
+    </div>
+    <div class="yard reveal">
+      <div class="block"><div class="code">CAP</div><h4>Capacidade &amp; investimento</h4><p>Estudos de capacidade operacional e necessidade de infraestrutura/superestrutura.</p></div>
+      <div class="block"><div class="code">SIM</div><h4>Modelagem &amp; simulação</h4><p>Modelagem, simulação e otimização logística e operacional.</p></div>
+      <div class="block"><div class="code">STAT</div><h4>Análise estatística</h4><p>Leitura estatística de dados operacionais para embasar decisões.</p></div>
+      <div class="block"><div class="code">BI</div><h4>KPIs &amp; dashboards</h4><p>Indicadores, dashboards e reports gerenciais em Power BI.</p></div>
+      <div class="block"><div class="code">LIC</div><h4>Concorrências</h4><p>Apoio técnico em concorrências nacionais e internacionais.</p></div>
+      <div class="block"><div class="code">SLA</div><h4>Parâmetros operacionais</h4><p>Definição de parâmetros operacionais e SLAs.</p></div>
+      <div class="block"><div class="code">AUD</div><h4>Auditorias internas</h4><p>Verificação independente de processos e conformidade operacional.</p></div>
+      <div class="block"><div class="code">SYS</div><h4>Sistemas informatizados</h4><p>Especificação e homologação de sistemas operacionais.</p></div>
+      <div class="block"><div class="code">PMO</div><h4>Gerenciamento de projetos</h4><p>Coordenação de projetos multidisciplinares, ponta a ponta.</p></div>
+      <div class="block"><div class="code">SOP</div><h4>Procedimentos operacionais</h4><p>Criação de procedimentos claros e padronizados.</p></div>
+      <div class="block"><div class="code">TRN</div><h4>Capacitação de equipes</h4><p>Treinamento para sustentar o ganho depois que a consultoria sai.</p></div>
+      <div class="block" style="background:var(--ink-3); justify-content:center; align-items:flex-start;">
+        <p style="color:var(--fog); font-size:0.9rem; margin:0;">Não achou sua frente aqui?</p>
+        <a class="btn btn-ghost btn-arrow" style="margin-top:14px;" href="#contato">Conte o problema</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DASHBOARDS ============ -->
+  <section class="section-pad wrap" id="dashboards">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Em operação agora</p>
+      <h2>Radares públicos, atualizados continuamente</h2>
+      <p>Três painéis abertos que aplicam a mesma lógica de leitura de dados usada nos projetos de consultoria — clique para abrir o dashboard.</p>
+    </div>
+    <div class="dash-strip reveal">
+      <div class="dash-card">
+        <div class="dot-row"><span class="dot"></span> Radar COMEX &amp; Logística</div>
+        <h4>Comércio exterior e fluxo logístico</h4>
+        <p>Leitura contínua de indicadores de comércio exterior e movimentação logística nacional.</p>
+        <a class="btn btn-ghost btn-arrow" href="https://app.powerbi.com/view?r=eyJrIjoiMzkzZjg1NDctZTlhOC00ODAwLTgzNGItNTkxYmI1YmMxMTAwIiwidCI6IjU3MDFhMjMzLTY0YzEtNDFkZS1hYmI5LTI2MGU5MTMxZTAwMiJ9" target="_blank" rel="noopener">Abrir painel</a>
+      </div>
+      <div class="dash-card">
+        <div class="dot-row"><span class="dot"></span> Agroexportador</div>
+        <h4>Cadeia de exportação do agro</h4>
+        <p>Indicadores de originação, escoamento e exportação de grãos.</p>
+        <a class="btn btn-ghost btn-arrow" href="https://app.powerbi.com/view?r=eyJrIjoiMzkzZjg1NDctZTlhOC00ODAwLTgzNGItNTkxYmI1YmMxMTAwIiwidCI6IjU3MDFhMjMzLTY0YzEtNDFkZS1hYmI5LTI2MGU5MTMxZTAwMiJ9" target="_blank" rel="noopener">Abrir painel</a>
+      </div>
+      <div class="dash-card">
+        <div class="dot-row"><span class="dot"></span> Mineral Brasil &amp; Energia Brasil</div>
+        <h4>Mineração e energia</h4>
+        <p>Painel dedicado aos setores mineral e energético brasileiros.</p>
+        <a class="btn btn-ghost btn-arrow" href="https://app.powerbi.com/view?r=eyJrIjoiMzkzZjg1NDctZTlhOC00ODAwLTgzNGItNTkxYmI1YmMxMTAwIiwidCI6IjU3MDFhMjMzLTY0YzEtNDFkZS1hYmI5LTI2MGU5MTMxZTAwMiJ9" target="_blank" rel="noopener">Abrir painel</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CASE STUDIES / LOGBOOK ============ -->
+  <section class="section-pad wrap" id="projetos">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Diário de bordo</p>
+      <h2>Projetos &amp; experiências recentes</h2>
+      <p>Cinco entradas de um portfólio maior — cada uma com o problema, a abordagem e o número que sobrou depois da consultoria.</p>
+    </div>
+
+    <div class="log reveal">
+      <div class="log-entry">
+        <div class="log-meta"><div class="code">BR-STS · GRANÉIS SÓLIDOS</div><div class="loc">Terminais portuários · manobras ferroviárias e marítimas</div></div>
+        <div class="log-body">
+          <h3>Otimização logística e operacional em terminais de granéis sólidos</h3>
+          <p>Heurísticas operacionais aplicadas às manobras ferroviárias e marítimas em terminais de granéis sólidos vegetais, com modelagem matemática, simulação e otimização — sem investimento adicional em infraestrutura ou superestrutura. Incluiu planos de ação, acompanhamento operacional, treinamento de equipes e monitoramento contínuo.</p>
+          <div class="log-metrics">
+            <span class="m">+30% produtividade operacional</span>
+            <span class="m">até +2 milhões t/ano de capacidade</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-meta"><div class="code">BR-CTR · LAYOUT</div><div class="loc">Terminais de contêineres</div></div>
+        <div class="log-body">
+          <h3>Readequação de layout interno para maximizar capacidade estática e dinâmica</h3>
+          <p>Análise histórica de distribuição e tempo de permanência das cargas para redimensionar e realocar pátio e galpão — considerando perfil de carga e cliente, sinergia com demais atividades, arruamentos, drenagem, proximidade de facilidades, equipamentos disponíveis e melhores práticas de outros terminais.</p>
+          <div class="log-metrics"><span class="m">Pátio e galpão redimensionados por evidência, não por intuição</span></div>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-meta"><div class="code">BR-STS · BUSINESS INTELLIGENCE</div><div class="loc">Terminais graneleiros da região de Santos/SP</div></div>
+        <div class="log-body">
+          <h3>Business Intelligence e dashboards operacionais</h3>
+          <p>Modelos analíticos, dashboards operacionais e soluções de BI aplicados a terminais portuários graneleiros — modelagem e tratamento de dados, criação de KPIs, monitoramento de produtividade e desempenho, e apoio direto à tomada de decisão gerencial.</p>
+          <div class="log-metrics"><span class="m">KPIs vivos, não relatório de fim de mês</span></div>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-meta"><div class="code">BR-SSA · TECON SALVADOR</div><div class="loc">Contratação: Wilson Sons</div></div>
+        <div class="log-body">
+          <h3>Estudos operacionais e logísticos — Terminal de Contêineres de Salvador/BA</h3>
+          <p>Análise histórica de dados operacionais, modelagem e simulação de capacidade, identificação de gargalos, apoio operacional à previsão orçamentária, indicadores de performance, ferramentas de planejamento e alocação de recursos, e treinamento das equipes internas.</p>
+          <div class="log-metrics"><span class="m">Previsão orçamentária apoiada em dado operacional</span></div>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-meta"><div class="code">BR-ITQ · PORTO DO ITAQUI</div><div class="loc">Contratação: DTA Engenharia</div></div>
+        <div class="log-body">
+          <h3>Gerenciamento de projetos de engenharia portuária</h3>
+          <p>Gerenciamento e apoio técnico multidisciplinar durante levantamento de campo e elaboração de projetos para requalificação da área da antiga CONAB e do Terminal de Passageiros de Ponta da Espera — em interface com saúde e segurança ocupacional, meio ambiente, RH, jurídico, financeiro e engenharia multidisciplinar, em níveis conceitual, básico e executivo.</p>
+          <div class="log-metrics"><span class="m">Conceitual → básico → executivo, sob um único fio condutor</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT / PROFILE ============ -->
+  <section class="section-pad wrap" id="sobre">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Quem conduz a operação</p>
+      <h2>Um engenheiro que mede antes de recomendar</h2>
+    </div>
+    <div class="profile reveal">
+      <div class="profile-badge"><span>DC</span></div>
+      <div>
+        <h3>Dennis Caceta</h3>
+        <p class="role">Engenheiro · Pesquisador Operacional · Professor Universitário</p>
+        <ul class="cred-list">
+          <li>Engenheiro (IMT), associado ao CREASP/RJ</li>
+          <li>Membro da Sociedade Brasileira de Pesquisa Operacional (SOBRAPO) e da Sociedade Brasileira de Matemática Aplicada e Computacional (SBMAC)</li>
+          <li>Professor universitário, com atuação em operações portuárias, logística multimodal e otimização de processos em diversos portos e terminais brasileiros</li>
+          <li>Especialista em gerenciamento de projetos (USP)</li>
+          <li>Formação em modelagem quantitativa, simulação e análise estatística (Vanzolini / Rice / Leeds)</li>
+          <li>Mestrando em Pesquisa Operacional (ITA/UNIFESP)</li>
+        </ul>
+        <a class="btn btn-ghost btn-arrow" style="margin-top:24px;" href="https://www.linkedin.com/in/dennis-caceta/" target="_blank" rel="noopener">Perfil no LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMPASS ============ -->
+  <section class="section-pad wrap" id="bussola">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Bússola</p>
+      <h2>Missão, visão e valores</h2>
+    </div>
+    <div class="compass reveal">
+      <div class="compass-card">
+        <p class="eyebrow" style="color:var(--amber);">Missão</p>
+        <p>Tornar nosso o desafio de cada cliente e entregar, para cada um, a melhor solução possível.</p>
+      </div>
+      <div class="compass-card">
+        <p class="eyebrow" style="color:var(--amber);">Visão</p>
+        <p>Ser referência na área em que atuamos.</p>
+      </div>
+      <div class="compass-card">
+        <p class="eyebrow" style="color:var(--amber);">Valores</p>
+        <ul>
+          <li>Experiência</li>
+          <li>Inovação</li>
+          <li>Criatividade</li>
+          <li>Ética</li>
+          <li>Responsabilidade social e sustentabilidade</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESEARCH ============ -->
+  <section class="section-pad wrap" id="pesquisa">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Pesquisa &amp; desenvolvimento</p>
+      <h2>52 artigos técnicos, e alguns dos estudos que os originaram</h2>
+      <p>Trabalhos apresentados em congressos e simpósios de engenharia, logística e ciência de dados — a base acadêmica por trás das recomendações práticas.</p>
+    </div>
+    <div class="paper-list reveal">
+      <div class="paper-row"><p>Programação Linear Aplicada ao Planejamento de Recebimento de Vagões em Terminais Portuários</p><span class="venue">VIII Simpósio de Eng. Ferroviária — UNICAMP</span></div>
+      <div class="paper-row"><p>Otimização do Tamanho da Frota e da Programação do Carregamento Rodoviário para Abastecimento de Terminais Rodoferroviários</p><span class="venue">II Sem. Interdisciplinar em Ciência de Dados — UNESP/Bauru</span></div>
+      <div class="paper-row"><p>Análise Multicritério do Abastecimento de Terminais Portuários com Controle Dinâmico de Estoque</p><span class="venue">Publicação técnica</span></div>
+      <div class="paper-row"><p>Modelo para Endereçamento Interno de Veículos em Terminais Graneleiros</p><span class="venue">V Congresso Brasileiro Interdisciplinar de Ciência e Tecnologia</span></div>
+      <div class="paper-row"><p>Sequenciamento Ótimo de Atracações</p><span class="venue">2º Congresso Nacional Integra Portos</span></div>
+      <div class="paper-row"><p>A Importância da Adoção de Sistemas Informatizados na Operação Logística dos Grãos</p><span class="venue">I Congresso Internacional de Engenharia Agronômica</span></div>
+    </div>
+    <div class="press-row">
+      <a href="https://www.portosenavios.com.br/pesquisar?searchword=dennis%20caceta&searchphrase=all" target="_blank" rel="noopener">Portos e Navios</a>
+      <a href="https://logweb.com.br/?s=dennis+caceta" target="_blank" rel="noopener">LogWeb</a>
+      <a href="https://jornalportuario.com.br/busca/?q=dennis%20caceta" target="_blank" rel="noopener">Jornal Portuário</a>
+      <a href="https://www.guiamaritimo.com.br/especiais" target="_blank" rel="noopener">Guia Marítimo</a>
+      <a href="https://mundologistica.com.br/busca-portal" target="_blank" rel="noopener">Mundo Logística</a>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact wrap" id="contato">
+    <p class="eyebrow" style="justify-content:center;">Próxima parada</p>
+    <h2>Quer avaliar gargalos, capacidade ou produtividade da sua operação?</h2>
+    <p>Uma conversa de 20 minutos já mostra se o problema é de processo, de dado ou de layout — e qual investigar primeiro.</p>
+    <div class="contact-ctas">
+      <a class="btn btn-primary" href="https://wa.me/5513997492941" target="_blank" rel="noopener">Falar no WhatsApp</a>
+      <a class="btn btn-ghost" href="tel:+5513997492941">(13) 99749-2941</a>
+    </div>
+    <div class="contact-lines">
+      <a href="https://www.linkedin.com/company/dennis-caceta-consultoria-em-gest%C3%A3o-empresarial" target="_blank" rel="noopener">LinkedIn da consultoria</a>
+      <a href="https://www.linkedin.com/in/dennis-caceta/" target="_blank" rel="noopener">LinkedIn — Dennis Caceta</a>
+      <a href="mailto:contato@denniscaceta.com">contato@denniscaceta.com</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Dennis Caceta Consultoria em Gestão Empresarial. Todos os direitos reservados.</span>
+    <span>Porto de Santos · Brasil</span>
+  </div>
+</footer>
+
+<script>
+  // mobile nav toggle
+  const toggle = document.getElementById('navToggle');
+  const linksNav = document.querySelector('nav.links');
+  toggle.addEventListener('click', () => {
+    const open = linksNav.style.display === 'flex';
+    linksNav.style.display = open ? 'none' : 'flex';
+    linksNav.style.flexDirection = 'column';
+    linksNav.style.position = 'absolute';
+    linksNav.style.top = '64px';
+    linksNav.style.right = '28px';
+    linksNav.style.background = '#0F1F29';
+    linksNav.style.border = '1px solid rgba(169,180,188,0.16)';
+    linksNav.style.padding = '18px 22px';
+    linksNav.style.gap = '14px';
+    toggle.setAttribute('aria-expanded', String(!open));
+  });
+
+  // reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
