@@ -124,15 +124,7 @@
   }
   .brand{ display:flex; align-items:center; gap:0.7em; font-family:'Big Shoulders Display'; font-size:1.15rem; letter-spacing:0.02em; text-transform:uppercase; }
   .brand .mark{
-    width:34px; height:34px; border:1px solid var(--teal); border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--teal);
-    position:relative; flex:none;
-  }
-  .brand .mark::after{
-    content:''; position:absolute; inset:5px; border-radius:50%;
-    background:conic-gradient(from 0deg, transparent 0deg, rgba(82,199,184,0.55) 40deg, transparent 90deg);
-    animation:sweep 4s linear infinite;
+    height:36px; width:auto; flex:none; display:block;
   }
   @keyframes sweep{ to{ transform:rotate(360deg); } }
 
@@ -150,8 +142,9 @@
 
   /* ============ HERO (home) ============ */
   .hero{ padding:170px 0 90px; overflow:hidden; position:relative; }
-  .radar-field{ position:absolute; right:-160px; top:80px; width:640px; height:640px; pointer-events:none; opacity:0.55; }
-  .radar-field svg{ width:100%; height:100%; }
+  .radar-field{ position:absolute; right:-160px; top:80px; width:640px; height:640px; pointer-events:none; }
+  .radar-field svg{ width:100%; height:100%; opacity:0.55; }
+  .radar-field .logo-glyph{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); height:42%; width:auto; opacity:0.96; }
   .radar-sweep{ transform-origin:320px 320px; animation:radarspin 7s linear infinite; }
   @keyframes radarspin{ to{ transform:rotate(360deg); } }
   .blip{ animation:blink 3.4s ease-in-out infinite; }
@@ -175,12 +168,16 @@
     .stat-strip{ grid-template-columns:repeat(2,1fr); }
     .stat{ padding:18px 16px; border-right:1px solid var(--line); }
     .stat:nth-child(2n){ border-right:none; }
-    .radar-field{ opacity:0.28; right:-260px; }
+    .radar-field{ right:-260px; }
+    .radar-field svg{ opacity:0.28; }
+    .radar-field .logo-glyph{ opacity:0.5; }
   }
 
   /* ============ PAGE HEADER (inner pages) ============ */
   .page-hero{ padding:158px 0 64px; border-bottom:1px solid var(--line); position:relative; overflow:hidden; }
-  .page-hero .radar-field{ opacity:0.32; right:-300px; top:-120px; width:520px; height:520px; }
+  .page-hero .radar-field{ right:-300px; top:-120px; width:520px; height:520px; }
+  .page-hero .radar-field svg{ opacity:0.32; }
+  .page-hero .radar-field .logo-glyph{ opacity:0.45; }
   .page-hero h1{ font-size:clamp(2.3rem,5.4vw,3.7rem); margin:16px 0 18px; color:var(--white); position:relative; }
   .page-hero p.lead{ color:var(--fog); max-width:620px; font-size:1.05rem; margin:0; position:relative; }
   .page-hero .crumb{ font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--fog); margin-bottom:16px; display:block; }
@@ -333,7 +330,7 @@
 <body>
 <header class="site">
   <div class="nav">
-    <a class="brand" href="index.html"><span class="mark">DC</span> Dennis Caceta</a>
+    <a class="brand" href="index.html"><img class="mark" src="https://luizredes2000.github.io/denniscaceta/logo_denniscaceta-1.png" alt="Dennis Caceta"> Dennis Caceta</a>
     <nav class="links">
       <a href="servicos.html">Serviços</a>
       <a href="projetos.html">Projetos</a>
@@ -373,6 +370,7 @@
         <circle class="blip b3" cx="470" cy="400" r="4" fill="#52C7B8"/>
         <circle class="blip b4" cx="200" cy="200" r="4" fill="#52C7B8"/>
       </svg>
+      <img class="logo-glyph" src="https://luizredes2000.github.io/denniscaceta/logo_denniscaceta-1.png" alt="" aria-hidden="true">
     </div>
 
     <div class="hero-inner reveal in">
