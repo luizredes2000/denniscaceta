@@ -124,15 +124,7 @@
   }
   .brand{ display:flex; align-items:center; gap:0.7em; font-family:'Big Shoulders Display'; font-size:1.15rem; letter-spacing:0.02em; text-transform:uppercase; }
   .brand .mark{
-    width:34px; height:34px; border:1px solid var(--teal); border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--teal);
-    position:relative; flex:none;
-  }
-  .brand .mark::after{
-    content:''; position:absolute; inset:5px; border-radius:50%;
-    background:conic-gradient(from 0deg, transparent 0deg, rgba(82,199,184,0.55) 40deg, transparent 90deg);
-    animation:sweep 4s linear infinite;
+    height:36px; width:auto; flex:none; display:block;
   }
   @keyframes sweep{ to{ transform:rotate(360deg); } }
 
@@ -150,8 +142,9 @@
 
   /* ============ HERO (home) ============ */
   .hero{ padding:170px 0 90px; overflow:hidden; position:relative; }
-  .radar-field{ position:absolute; right:-160px; top:80px; width:640px; height:640px; pointer-events:none; opacity:0.55; }
-  .radar-field svg{ width:100%; height:100%; }
+  .radar-field{ position:absolute; right:-160px; top:80px; width:640px; height:640px; pointer-events:none; }
+  .radar-field svg{ width:100%; height:100%; opacity:0.55; }
+  .radar-field .logo-glyph{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); height:42%; width:auto; opacity:0.96; }
   .radar-sweep{ transform-origin:320px 320px; animation:radarspin 7s linear infinite; }
   @keyframes radarspin{ to{ transform:rotate(360deg); } }
   .blip{ animation:blink 3.4s ease-in-out infinite; }
@@ -175,12 +168,16 @@
     .stat-strip{ grid-template-columns:repeat(2,1fr); }
     .stat{ padding:18px 16px; border-right:1px solid var(--line); }
     .stat:nth-child(2n){ border-right:none; }
-    .radar-field{ opacity:0.28; right:-260px; }
+    .radar-field{ right:-260px; }
+    .radar-field svg{ opacity:0.28; }
+    .radar-field .logo-glyph{ opacity:0.5; }
   }
 
   /* ============ PAGE HEADER (inner pages) ============ */
   .page-hero{ padding:158px 0 64px; border-bottom:1px solid var(--line); position:relative; overflow:hidden; }
-  .page-hero .radar-field{ opacity:0.32; right:-300px; top:-120px; width:520px; height:520px; }
+  .page-hero .radar-field{ right:-300px; top:-120px; width:520px; height:520px; }
+  .page-hero .radar-field svg{ opacity:0.32; }
+  .page-hero .radar-field .logo-glyph{ opacity:0.45; }
   .page-hero h1{ font-size:clamp(2.3rem,5.4vw,3.7rem); margin:16px 0 18px; color:var(--white); position:relative; }
   .page-hero p.lead{ color:var(--fog); max-width:620px; font-size:1.05rem; margin:0; position:relative; }
   .page-hero .crumb{ font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--fog); margin-bottom:16px; display:block; }
@@ -250,13 +247,16 @@
   @media (max-width:760px){ .log-entry{ grid-template-columns:1fr; gap:14px; } }
 
   /* ============ PROFILE ============ */
-  .profile{ display:grid; grid-template-columns:220px 1fr; gap:48px; align-items:start; border:1px solid var(--line); background:var(--ink-2); padding:40px; }
-  .profile-badge{ width:100%; aspect-ratio:1; border:1px solid var(--teal); border-radius:50%; display:flex; align-items:center; justify-content:center; position:relative; }
-  .profile-badge span{ font-family:'Big Shoulders Display'; font-size:2.4rem; color:var(--teal); }
-  .profile-badge::before{ content:''; position:absolute; inset:-1px; border-radius:50%; background:conic-gradient(from 0deg, transparent 0deg, rgba(82,199,184,0.4) 60deg, transparent 130deg); animation:sweep 6s linear infinite; }
-  .profile h3{ font-family:'Big Shoulders Display'; font-size:1.7rem; text-transform:none; letter-spacing:0; color:var(--white); }
-  .profile .role{ font-family:'IBM Plex Mono'; font-size:0.78rem; color:var(--amber); letter-spacing:0.06em; text-transform:uppercase; margin-top:6px; }
-  .profile .bio{ color:var(--fog); font-size:0.97rem; margin-top:18px; max-width:640px; }
+  .profile{ display:grid; grid-template-columns:220px 1fr; gap:48px; align-items:start; border:1px solid var(--line); background:var(--ink-2); padding:40px; position:relative; overflow:hidden; }
+  .profile-bg-outline{ position:absolute; z-index:0; right:-30px; top:50%; transform:translateY(-50%); height:135%; width:auto; opacity:0.4; pointer-events:none; }
+  .profile-badge{ width:100%; aspect-ratio:1; border:1px solid var(--teal); border-radius:50%; display:flex; align-items:center; justify-content:center; position:relative; z-index:1; overflow:hidden; background:var(--ink-3); }
+  .profile-badge img{ width:100%; height:100%; object-fit:cover; border-radius:50%; position:relative; z-index:1; }
+  .profile-badge span{ font-family:'Big Shoulders Display'; font-size:2.4rem; color:var(--teal); position:relative; z-index:1; }
+  .profile-badge::before{ content:''; position:absolute; inset:-1px; border-radius:50%; background:conic-gradient(from 0deg, transparent 0deg, rgba(82,199,184,0.4) 60deg, transparent 130deg); animation:sweep 6s linear infinite; z-index:2; }
+  .profile h3{ font-family:'Big Shoulders Display'; font-size:1.7rem; text-transform:none; letter-spacing:0; color:var(--white); position:relative; z-index:1; }
+  .profile .role{ font-family:'IBM Plex Mono'; font-size:0.78rem; color:var(--teal); letter-spacing:0.06em; text-transform:uppercase; margin-top:6px; position:relative; z-index:1; }
+  .profile .bio{ color:var(--fog); font-size:0.97rem; margin-top:18px; max-width:640px; position:relative; z-index:1; }
+  .profile > div:last-child{ position:relative; z-index:1; }
   .cred-list{ margin-top:22px; display:grid; gap:10px; }
   .cred-list li{ list-style:none; color:var(--fog); font-size:0.92rem; padding-left:18px; position:relative; }
   .cred-list li::before{ content:'—'; position:absolute; left:0; color:var(--teal); }
@@ -333,7 +333,7 @@
 <body>
 <header class="site">
   <div class="nav">
-    <a class="brand" href="index.html"><span class="mark">DC</span> Dennis Caceta</a>
+    <a class="brand" href="index.html"><img class="mark" src="https://luizredes2000.github.io/denniscaceta/logo_denniscaceta-1.png" alt="Dennis Caceta"> Dennis Caceta</a>
     <nav class="links">
       <a href="servicos.html">Serviços</a>
       <a href="projetos.html">Projetos</a>
@@ -373,6 +373,7 @@
         <circle class="blip b3" cx="470" cy="400" r="4" fill="#52C7B8"/>
         <circle class="blip b4" cx="200" cy="200" r="4" fill="#52C7B8"/>
       </svg>
+      <img class="logo-glyph" src="https://luizredes2000.github.io/denniscaceta/logo_denniscaceta-1.png" alt="" aria-hidden="true">
     </div>
 
     <span class="crumb"><a href="index.html">Início</a> / Sobre</span>
@@ -383,7 +384,8 @@
 
   <section class="section-pad wrap" id="perfil">
     <div class="profile reveal">
-      <div class="profile-badge"><span>DC</span></div>
+      <img class="profile-bg-outline" src="https://luizredes2000.github.io/denniscaceta/logo_outline.png" alt="" aria-hidden="true">
+      <div class="profile-badge"><img src="https://luizredes2000.github.io/denniscaceta/dennis-caceta-3.png" alt="Dennis Caceta"></div>
       <div>
         <h3>Dennis Caceta</h3>
         <p class="role">Head em Projetos de Melhoria Contínua — Dennis Caceta Consultoria em Gestão Empresarial</p>
