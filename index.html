@@ -357,17 +357,19 @@
   @media (max-width:640px){ footer .wrap{ justify-content:center; text-align:center; } }
 
   /* ============ PRESS LOGO CAROUSEL (index only) ============ */
+  .press-section{ padding:16px 0; margin:-60px 0; }
   .press-marquee{
     overflow:hidden; position:relative; padding:8px 0;
     -webkit-mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
     mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   }
-  .press-track{ display:flex; align-items:center; gap:72px; width:max-content; animation:press-scroll 32s linear infinite; }
+  .press-track{ display:flex; align-items:center; gap:88px; width:max-content; animation:press-scroll 32s linear infinite; }
   .press-marquee:hover .press-track{ animation-play-state:paused; }
   .press-track a{ flex:none; display:flex; align-items:center; }
-  .press-track img{ height:26px; width:auto; opacity:0.65; filter:grayscale(1) brightness(1.6); transition:opacity .2s ease; }
+  .press-track img{ height:42px; width:auto; opacity:0.7; filter:grayscale(1) brightness(1.6); transition:opacity .2s ease; }
   .press-track a:hover img{ opacity:1; }
   @keyframes press-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  @media (max-width:640px){ .press-track img{ height:32px; } .press-track{ gap:56px; } }
 
   /* reveal-on-scroll */
   .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
@@ -530,7 +532,7 @@
     </div>
   </section>
 
-  <section class="section-pad tight wrap" id="imprensa-marquee" aria-label="Menções na imprensa especializada">
+  <section class="press-section wrap" id="imprensa-marquee" aria-label="Menções na imprensa especializada">
     <div class="press-marquee reveal">
       <div class="press-track">
       <a href="#" aria-label="DNA USP"><img src="https://luizredes2000.github.io/denniscaceta/dnausp.png" alt="DNA USP" loading="lazy"></a>
