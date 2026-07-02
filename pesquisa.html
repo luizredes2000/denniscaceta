@@ -17,8 +17,8 @@
     --ink-3:    #16303e;
     --line:     rgba(169,180,188,0.16);
     --paper:    #E9E4D6;
-    --amber:    #E38B29;
-    --amber-2:  #ffb066;
+    --amber:    #52C7B8;
+    --amber-2:  #8FE6DA;
     --teal:     #52C7B8;
     --teal-dim: #2f6e66;
     --fog:      #9FADB6;
@@ -82,7 +82,7 @@
     width:7px; height:7px;
     border-radius:50%;
     background:var(--amber);
-    box-shadow:0 0 0 3px rgba(227,139,41,0.18);
+    box-shadow:0 0 0 3px rgba(82,199,184,0.18);
     flex:none;
   }
 
@@ -277,6 +277,8 @@
   .paper-row{ display:grid; grid-template-columns:1fr 240px; gap:20px; padding:22px 0; border-bottom:1px solid var(--line); }
   .paper-row p{ margin:0; font-size:0.96rem; color:var(--white); }
   .paper-row .venue{ font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--teal); text-align:right; align-self:center; }
+  .paper-row .venue.highlight{ color:var(--amber-2); font-weight:600; }
+  .paper-row.is-new{ background:rgba(82,199,184,0.07); }
   @media (max-width:700px){ .paper-row{ grid-template-columns:1fr; } .paper-row .venue{ text-align:left; } }
 
   .press-row{ display:flex; gap:14px; flex-wrap:wrap; margin-top:30px; }
@@ -366,10 +368,10 @@
             <stop offset="1" stop-color="#52C7B8" stop-opacity="0"/>
           </linearGradient>
         </defs>
-        <circle class="blip b1" cx="420" cy="220" r="5" fill="#E38B29"/>
+        <circle class="blip b1" cx="420" cy="220" r="5" fill="#52C7B8"/>
         <circle class="blip b2" cx="230" cy="410" r="5" fill="#52C7B8"/>
         <circle class="blip b3" cx="470" cy="400" r="4" fill="#52C7B8"/>
-        <circle class="blip b4" cx="200" cy="200" r="4" fill="#E38B29"/>
+        <circle class="blip b4" cx="200" cy="200" r="4" fill="#52C7B8"/>
       </svg>
     </div>
 
@@ -389,24 +391,27 @@
   <section class="section-pad tight wrap" id="papers">
     <div class="sec-head reveal">
       <p class="eyebrow">Estudos selecionados</p>
-      <h2>Apresentados em congressos e simpósios</h2>
+      <h2>Estudos, modelos de simulação e otimização, apresentados em congressos, simpósios e encontros</h2>
       <p>Clique no nome do evento para localizar o artigo no anais correspondente.</p>
     </div>
     <div class="paper-list reveal">
       <div class="paper-row"><p>Programação Linear Aplicada ao Planejamento de Recebimento de Vagões em Terminais Portuários</p><a class="venue" href="https://www.even3.com.br/anais/viii-simposio-de-engenharia-ferroviaria/1087354-programacao-linear-aplicada-ao-planejamento-de-recebimento-de-vagoes-em-terminais-portuarios/" target="_blank" rel="noopener">VIII Simpósio de Eng. Ferroviária — UNICAMP</a></div>
       <div class="paper-row"><p>Otimização do Tamanho da Frota e da Programação do Carregamento Rodoviário para Abastecimento de Terminais Rodoferroviários</p><span class="venue">II Sem. Interdisciplinar em Ciência de Dados — UNESP/Bauru</span></div>
-      <div class="paper-row"><p>Análise Multicritério do Abastecimento de Terminais Portuários com Controle Dinâmico de Estoque</p><span class="venue">Publicação técnica</span></div>
+      <div class="paper-row"><p>Análise Multicritério do Abastecimento de Terminais Portuários com Controle Dinâmico de Estoque</p><span class="venue highlight">ERMAC 2026 · 8ª Região</span></div>
       <div class="paper-row"><p>Modelo para Endereçamento Interno de Veículos em Terminais Graneleiros</p><a class="venue" href="https://www.even3.com.br/anais/congressoagro24/1068877-a-importancia-da-implementacao-de-sistemas-informatizados-na-operacao-logistica-dos-graos/" target="_blank" rel="noopener">V Congresso Brasileiro Interdisciplinar de Ciência e Tecnologia</a></div>
       <div class="paper-row"><p>Sequenciamento Ótimo de Atracações</p><a class="venue" href="https://www.even3.com.br/anais/cnit/971610-sequenciamento-otimo-de-atracacoes/" target="_blank" rel="noopener">2º Congresso Nacional Integra Portos</a></div>
       <div class="paper-row"><p>A Importância da Adoção de Sistemas Informatizados na Operação Logística dos Grãos</p><a class="venue" href="https://www.even3.com.br/anais/congressoagro24/1068877-a-importancia-da-implementacao-de-sistemas-informatizados-na-operacao-logistica-dos-graos/" target="_blank" rel="noopener">I Congresso Internacional de Engenharia Agronômica</a></div>
+      <div class="paper-row is-new"><p>Análise Quantitativa de Navios Graneleiros</p><span class="venue highlight">3º Congresso Nacional Integra Portos</span></div>
+      <div class="paper-row is-new"><p>A Navegação Interior e os Portos do Arco Norte</p><span class="venue highlight">3º Congresso Nacional Integra Portos</span></div>
+      <div class="paper-row is-new"><p>Portos como Vetores do PIB Brasileiro</p><span class="venue highlight">3º Congresso Nacional Integra Portos</span></div>
     </div>
   </section>
 
   <section class="section-pad tight wrap" id="imprensa">
     <div class="sec-head reveal">
       <p class="eyebrow">Na imprensa especializada</p>
-      <h2>Menções e entrevistas</h2>
-      <p>Busca por "Dennis Caceta" nos principais portais do setor portuário e logístico.</p>
+      <h2>Artigos técnicos publicados em portais especializados, abordando temas como otimização portuária, logística multimodal e modelagem quantitativa aplicada</h2>
+      <p>Clique nos ícones e conheça os trabalhos.</p>
     </div>
     <div class="press-row reveal">
       <a href="https://www.portosenavios.com.br/pesquisar?searchword=dennis%20caceta&searchphrase=all" target="_blank" rel="noopener">Portos e Navios</a>
