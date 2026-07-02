@@ -3,8 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Serviços — Dennis Caceta Consultoria</title>
-<meta name="description" content="Onze frentes de atuação em consultoria de logística, operações portuárias e melhoria de processos.">
+<title>Projetos | Dennis Caceta Consultoria em Gestão Empresarial</title>
+<meta name="description" content="Diário de bordo com cinco projetos de consultoria em operações portuárias e logística.">
+<meta property="og:title" content="Projetos | Dennis Caceta Consultoria em Gestão Empresarial">
+<meta property="og:description" content="Diário de bordo com cinco projetos de consultoria em operações portuárias e logística.">
+<meta property="og:image" content="https://luizredes2000.github.io/denniscaceta/banner-descricao.jpg">
+<meta property="og:url" content="https://www.denniscaceta.com/projetos.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://www.denniscaceta.com/projetos.html">
+<meta name="twitter:title" content="Projetos | Dennis Caceta Consultoria em Gestão Empresarial">
+<meta name="twitter:description" content="Diário de bordo com cinco projetos de consultoria em operações portuárias e logística.">
+<meta name="twitter:image" content="https://luizredes2000.github.io/denniscaceta/banner-descricao.jpg">
+<link rel="icon" href="https://luizredes2000.github.io/denniscaceta/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="https://luizredes2000.github.io/denniscaceta/genfavicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://luizredes2000.github.io/denniscaceta/genfavicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="https://luizredes2000.github.io/denniscaceta/genfavicon-48.png">
+<link rel="icon" type="image/png" sizes="64x64" href="https://luizredes2000.github.io/denniscaceta/genfavicon-64.png">
+<link rel="icon" type="image/png" sizes="128x128" href="https://luizredes2000.github.io/denniscaceta/genfavicon-128.png">
+<link rel="icon" type="image/png" sizes="256x256" href="https://luizredes2000.github.io/denniscaceta/genfavicon-256.png">
+<link rel="icon" type="image/png" sizes="512x512" href="https://luizredes2000.github.io/denniscaceta/genfavicon-512.png">
+<link rel="apple-touch-icon" href="https://luizredes2000.github.io/denniscaceta/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="57x57" href="https://luizredes2000.github.io/denniscaceta/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://luizredes2000.github.io/denniscaceta/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="https://luizredes2000.github.io/denniscaceta/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://luizredes2000.github.io/denniscaceta/apple-touch-icon-180x180.png">
+<link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -124,15 +148,7 @@
   }
   .brand{ display:flex; align-items:center; gap:0.7em; font-family:'Big Shoulders Display'; font-size:1.15rem; letter-spacing:0.02em; text-transform:uppercase; }
   .brand .mark{
-    width:34px; height:34px; border:1px solid var(--teal); border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--teal);
-    position:relative; flex:none;
-  }
-  .brand .mark::after{
-    content:''; position:absolute; inset:5px; border-radius:50%;
-    background:conic-gradient(from 0deg, transparent 0deg, rgba(82,199,184,0.55) 40deg, transparent 90deg);
-    animation:sweep 4s linear infinite;
+    height:36px; width:auto; flex:none; display:block;
   }
   @keyframes sweep{ to{ transform:rotate(360deg); } }
 
@@ -150,8 +166,9 @@
 
   /* ============ HERO (home) ============ */
   .hero{ padding:170px 0 90px; overflow:hidden; position:relative; }
-  .radar-field{ position:absolute; right:-160px; top:80px; width:640px; height:640px; pointer-events:none; opacity:0.55; }
-  .radar-field svg{ width:100%; height:100%; }
+  .radar-field{ position:absolute; right:-160px; top:80px; width:640px; height:640px; pointer-events:none; }
+  .radar-field svg{ width:100%; height:100%; opacity:0.55; }
+  .radar-field .logo-glyph{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); height:42%; width:auto; opacity:0.96; }
   .radar-sweep{ transform-origin:320px 320px; animation:radarspin 7s linear infinite; }
   @keyframes radarspin{ to{ transform:rotate(360deg); } }
   .blip{ animation:blink 3.4s ease-in-out infinite; }
@@ -175,12 +192,16 @@
     .stat-strip{ grid-template-columns:repeat(2,1fr); }
     .stat{ padding:18px 16px; border-right:1px solid var(--line); }
     .stat:nth-child(2n){ border-right:none; }
-    .radar-field{ opacity:0.28; right:-260px; }
+    .radar-field{ right:-260px; }
+    .radar-field svg{ opacity:0.28; }
+    .radar-field .logo-glyph{ opacity:0.5; }
   }
 
   /* ============ PAGE HEADER (inner pages) ============ */
   .page-hero{ padding:158px 0 64px; border-bottom:1px solid var(--line); position:relative; overflow:hidden; }
-  .page-hero .radar-field{ opacity:0.32; right:-300px; top:-120px; width:520px; height:520px; }
+  .page-hero .radar-field{ right:-300px; top:-120px; width:520px; height:520px; }
+  .page-hero .radar-field svg{ opacity:0.32; }
+  .page-hero .radar-field .logo-glyph{ opacity:0.45; }
   .page-hero h1{ font-size:clamp(2.3rem,5.4vw,3.7rem); margin:16px 0 18px; color:var(--white); position:relative; }
   .page-hero p.lead{ color:var(--fog); max-width:620px; font-size:1.05rem; margin:0; position:relative; }
   .page-hero .crumb{ font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--fog); margin-bottom:16px; display:block; }
@@ -250,13 +271,16 @@
   @media (max-width:760px){ .log-entry{ grid-template-columns:1fr; gap:14px; } }
 
   /* ============ PROFILE ============ */
-  .profile{ display:grid; grid-template-columns:220px 1fr; gap:48px; align-items:start; border:1px solid var(--line); background:var(--ink-2); padding:40px; }
-  .profile-badge{ width:100%; aspect-ratio:1; border:1px solid var(--teal); border-radius:50%; display:flex; align-items:center; justify-content:center; position:relative; }
-  .profile-badge span{ font-family:'Big Shoulders Display'; font-size:2.4rem; color:var(--teal); }
-  .profile-badge::before{ content:''; position:absolute; inset:-1px; border-radius:50%; background:conic-gradient(from 0deg, transparent 0deg, rgba(82,199,184,0.4) 60deg, transparent 130deg); animation:sweep 6s linear infinite; }
-  .profile h3{ font-family:'Big Shoulders Display'; font-size:1.7rem; text-transform:none; letter-spacing:0; color:var(--white); }
-  .profile .role{ font-family:'IBM Plex Mono'; font-size:0.78rem; color:var(--amber); letter-spacing:0.06em; text-transform:uppercase; margin-top:6px; }
-  .profile .bio{ color:var(--fog); font-size:0.97rem; margin-top:18px; max-width:640px; }
+  .profile{ display:grid; grid-template-columns:220px 1fr; gap:48px; align-items:start; border:1px solid var(--line); background:var(--ink-2); padding:40px; position:relative; overflow:hidden; }
+  .profile-bg-outline{ position:absolute; z-index:0; right:-30px; top:50%; transform:translateY(-50%); height:135%; width:auto; opacity:0.4; pointer-events:none; }
+  .profile-badge{ width:100%; aspect-ratio:1; border:1px solid var(--teal); border-radius:50%; display:flex; align-items:center; justify-content:center; position:relative; z-index:1; overflow:hidden; background:var(--ink-3); }
+  .profile-badge img{ width:100%; height:100%; object-fit:cover; border-radius:50%; position:relative; z-index:1; }
+  .profile-badge span{ font-family:'Big Shoulders Display'; font-size:2.4rem; color:var(--teal); position:relative; z-index:1; }
+  .profile-badge::before{ content:''; position:absolute; inset:-1px; border-radius:50%; background:conic-gradient(from 0deg, transparent 0deg, rgba(82,199,184,0.4) 60deg, transparent 130deg); animation:sweep 6s linear infinite; z-index:2; }
+  .profile h3{ font-family:'Big Shoulders Display'; font-size:1.7rem; text-transform:none; letter-spacing:0; color:var(--white); position:relative; z-index:1; }
+  .profile .role{ font-family:'IBM Plex Mono'; font-size:0.78rem; color:var(--teal); letter-spacing:0.06em; text-transform:uppercase; margin-top:6px; position:relative; z-index:1; }
+  .profile .bio{ color:var(--fog); font-size:0.97rem; margin-top:18px; max-width:640px; position:relative; z-index:1; }
+  .profile > div:last-child{ position:relative; z-index:1; }
   .cred-list{ margin-top:22px; display:grid; gap:10px; }
   .cred-list li{ list-style:none; color:var(--fog); font-size:0.92rem; padding-left:18px; position:relative; }
   .cred-list li::before{ content:'—'; position:absolute; left:0; color:var(--teal); }
@@ -322,7 +346,15 @@
   @media (max-width:640px){ .quick-form .row2{ grid-template-columns:1fr; } .brief{ padding:28px; } }
 
   footer{ border-top:1px solid var(--line); padding:26px 0; font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--fog); letter-spacing:0.02em; }
-  footer .wrap{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  .footer-social{ display:flex; align-items:center; gap:16px; }
+  .footer-social img{ height:20px; width:auto; opacity:0.8; transition:opacity .2s ease, transform .15s ease; display:block; }
+  .footer-social a:hover img{ opacity:1; transform:translateY(-2px); }
+  .footer-right{ display:flex; align-items:center; gap:18px; }
+  .footer-cta{ display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono'; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.06em; background:var(--teal); color:var(--ink); padding:0.55em 1.1em; border-radius:999px; transition:background .2s ease, transform .15s ease; }
+  .footer-cta img{ height:16px; width:auto; }
+  .footer-cta:hover{ background:var(--amber-2); transform:translateY(-1px); }
+  @media (max-width:640px){ footer .wrap{ justify-content:center; text-align:center; } }
 
   /* reveal-on-scroll */
   .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
@@ -333,10 +365,10 @@
 <body>
 <header class="site">
   <div class="nav">
-    <a class="brand" href="index.html"><span class="mark">DC</span> Dennis Caceta</a>
+    <a class="brand" href="index.html"><img class="mark" src="https://luizredes2000.github.io/denniscaceta/logo_denniscaceta-1.png" alt="Dennis Caceta"> Dennis Caceta</a>
     <nav class="links">
-      <a href="servicos.html" class="active">Serviços</a>
-      <a href="projetos.html">Projetos</a>
+      <a href="servicos.html">Serviços</a>
+      <a href="projetos.html" class="active">Projetos</a>
       <a href="sobre.html">Sobre</a>
       <a href="pesquisa.html">Pesquisa</a>
       <a href="contato.html">Contato</a>
@@ -373,62 +405,92 @@
         <circle class="blip b3" cx="470" cy="400" r="4" fill="#52C7B8"/>
         <circle class="blip b4" cx="200" cy="200" r="4" fill="#52C7B8"/>
       </svg>
+      <img class="logo-glyph" src="https://luizredes2000.github.io/denniscaceta/logo_denniscaceta-1.png" alt="" aria-hidden="true">
     </div>
 
-    <span class="crumb"><a href="index.html">Início</a> / Serviços</span>
-    <p class="eyebrow">Frentes de atuação</p>
-    <h1>Onde a consultoria entra na operação</h1>
-    <p class="lead">Nos segmentos logístico, portuário, industrial e operacional — do estudo de capacidade ao treinamento da equipe que vai sustentar o ganho depois que o projeto terminar.</p>
+    <span class="crumb"><a href="index.html">Início</a> / Projetos</span>
+    <p class="eyebrow">Diário de bordo</p>
+    <h1>Projetos &amp; experiências recentes</h1>
+    <p class="lead">Cinco entradas de um portfólio maior — cada uma com o problema, a abordagem e o resultado obtido depois da consultoria.</p>
   </section>
 
-  <section class="section-pad wrap" id="sinais">
-    <div class="sec-head reveal">
-      <p class="eyebrow">Diagnóstico</p>
-      <h2>Seis sinais de que o pátio está falando com você</h2>
-      <p>É por aqui que a maioria dos projetos começa.</p>
-    </div>
-    <div class="manifest reveal">
-      <div class="manifest-row"><span class="tag">01</span><span class="desc">Filas, esperas, gargalos ou baixa produtividade recorrentes</span><span class="stamp">Operação</span></div>
-      <div class="manifest-row"><span class="tag">02</span><span class="desc">Dificuldade para dimensionar capacidade, equipes ou equipamentos</span><span class="stamp">Capacidade</span></div>
-      <div class="manifest-row"><span class="tag">03</span><span class="desc">Falta de indicadores confiáveis para tomada de decisão</span><span class="stamp">Governança</span></div>
-      <div class="manifest-row"><span class="tag">04</span><span class="desc">Layout operacional inadequado ao perfil real de carga</span><span class="stamp">Layout</span></div>
-      <div class="manifest-row"><span class="tag">05</span><span class="desc">Necessidade de justificar investimentos com evidência técnica</span><span class="stamp">Investimento</span></div>
-      <div class="manifest-row"><span class="tag">06</span><span class="desc">Processos manuais, dispersos ou pouco padronizados</span><span class="stamp">Processo</span></div>
+  <section class="section-pad wrap" id="log">
+    <div class="log reveal">
+      <div class="log-entry">
+        <div class="log-meta"><div class="code">BR-STS · GRANÉIS SÓLIDOS</div><div class="loc">Terminais portuários · manobras ferroviárias e marítimas</div></div>
+        <div class="log-body">
+          <h3>Otimização logística e operacional em terminais de granéis sólidos</h3>
+          <p>Heurísticas operacionais aplicadas às manobras ferroviárias e marítimas em terminais de granéis sólidos vegetais, com modelagem matemática, simulação e otimização — sem a necessidade de investimentos adicionais em infraestrutura ou superestrutura. O projeto incluiu criação e implementação de planos de ação, acompanhamento operacional, treinamento de equipes e monitoramento contínuo dos resultados.</p>
+          <div class="log-metrics">
+            <span class="m">+30% produtividade operacional</span>
+            <span class="m">até +2 milhões t/ano de capacidade</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-meta"><div class="code">BR-CTR · LAYOUT</div><div class="loc">Terminais de contêineres</div></div>
+        <div class="log-body">
+          <h3>Readequação de layout interno para maximizar capacidade estática e dinâmica</h3>
+          <p>Análise histórica de distribuição e tempo de permanência das cargas movimentadas, para redimensionamento e realocação de pátio e galpão, considerando perfis de carga e clientes, sinergia com demais atividades internas, dimensões e distribuição dos arruamentos, condições de drenagem e outras edificações, proximidade das facilidades existentes, tipo e quantidade de equipamentos disponíveis e as melhores práticas adotadas em outros terminais.</p>
+          <div class="log-metrics"><span class="m">Pátio e galpão redimensionados por evidência, não por intuição</span></div>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-meta"><div class="code">BR-STS · BUSINESS INTELLIGENCE</div><div class="loc">Terminais graneleiros da região de Santos/SP</div></div>
+        <div class="log-body">
+          <h3>Business Intelligence e dashboards operacionais</h3>
+          <p>Desenvolvimento de modelos analíticos, dashboards operacionais e soluções de Business Intelligence aplicados a terminais portuários graneleiros — modelagem e tratamento de dados operacionais, criação de KPIs, monitoramento de produtividade, acompanhamento de desempenho operacional e apoio direto à tomada de decisão gerencial.</p>
+          <div class="log-metrics"><span class="m">KPIs vivos, não relatório de fim de mês</span></div>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-meta"><div class="code">BR-SSA · TECON SALVADOR</div><div class="loc">Contratação: Wilson Sons</div></div>
+        <div class="log-body">
+          <h3>Estudos operacionais e logísticos — Terminal de Contêineres de Salvador/BA</h3>
+          <p>Análise histórica de dados operacionais, modelagem e simulação de capacidade, identificação de gargalos, apoio operacional à previsão orçamentária, desenvolvimento de indicadores de performance, criação de ferramentas para planejamento e alocação de recursos, e treinamento das equipes internas.</p>
+          <div class="log-metrics"><span class="m">Previsão orçamentária apoiada em dado operacional</span></div>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-meta"><div class="code">BR-ITQ · PORTO DO ITAQUI</div><div class="loc">Contratação: DTA Engenharia</div></div>
+        <div class="log-body">
+          <h3>Gerenciamento de projetos de engenharia portuária</h3>
+          <p>Gerenciamento e apoio técnico multidisciplinar durante as atividades de levantamento de campo e elaboração de projetos de engenharia para requalificação da área da antiga CONAB e do Terminal de Passageiros de Ponta da Espera, no Porto do Itaqui/MA — em interface com saúde e segurança ocupacional, meio ambiente, recursos humanos, jurídico, financeiro e engenharia multidisciplinar, em níveis conceitual, básico e executivo.</p>
+          <div class="log-metrics"><span class="m">Conceitual → básico → executivo, sob um único fio condutor</span></div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="section-pad wrap" id="frentes">
+  <section class="section-pad wrap" id="dashboards">
     <div class="sec-head reveal">
-      <p class="eyebrow">Onze frentes</p>
-      <h2>Do diagnóstico à capacitação da equipe</h2>
-      <p>Cada frente pode ser contratada isoladamente ou como parte de um projeto maior de melhoria contínua.</p>
+      <p class="eyebrow">Em operação agora</p>
+      <h2>Radares públicos, atualizados continuamente</h2>
+      <p>Três painéis abertos que aplicam a mesma lógica de leitura de dados usada nos projetos acima.</p>
     </div>
-    <div class="yard reveal">
-      <div class="block"><div class="code">CAP</div><h4>Capacidade &amp; investimento</h4><p>Estudos de capacidade operacional e necessidade de investimentos em infraestrutura e superestrutura.</p></div>
-      <div class="block"><div class="code">SIM</div><h4>Modelagem &amp; simulação</h4><p>Modelagem, simulação e otimização logística e operacional.</p></div>
-      <div class="block"><div class="code">STAT</div><h4>Análise estatística</h4><p>Leitura estatística de dados operacionais para embasar decisões.</p></div>
-      <div class="block"><div class="code">BI</div><h4>KPIs &amp; dashboards</h4><p>Criação de indicadores, dashboards e reports gerenciais em Power BI.</p></div>
-      <div class="block"><div class="code">LIC</div><h4>Concorrências</h4><p>Apoio técnico em concorrências nacionais e internacionais.</p></div>
-      <div class="block"><div class="code">SLA</div><h4>Parâmetros operacionais</h4><p>Definição de parâmetros operacionais e SLAs.</p></div>
-      <div class="block"><div class="code">AUD</div><h4>Auditorias internas</h4><p>Verificação independente de processos e conformidade operacional.</p></div>
-      <div class="block"><div class="code">SYS</div><h4>Sistemas informatizados</h4><p>Especificação e homologação de sistemas operacionais.</p></div>
-      <div class="block"><div class="code">PMO</div><h4>Gerenciamento de projetos</h4><p>Coordenação de projetos multidisciplinares, ponta a ponta.</p></div>
-      <div class="block"><div class="code">SOP</div><h4>Procedimentos operacionais</h4><p>Criação de procedimentos claros e padronizados.</p></div>
-      <div class="block"><div class="code">TRN</div><h4>Capacitação de equipes</h4><p>Treinamento para sustentar o ganho depois que a consultoria sai.</p></div>
-    </div>
-  </section>
-
-  <section class="section-pad wrap" id="processo">
-    <div class="sec-head reveal">
-      <p class="eyebrow">Como conduzimos um projeto</p>
-      <h2>Quatro etapas, sempre nesta ordem</h2>
-      <p>A sequência é a mesma em qualquer frente — o que muda é a profundidade de cada etapa.</p>
-    </div>
-    <div class="timeline reveal">
-      <div class="step"><div class="n">01</div><h4>Diagnóstico</h4><p>Levantamento de dados operacionais, entrevistas e leitura do problema real por trás do sintoma relatado.</p></div>
-      <div class="step"><div class="n">02</div><h4>Modelagem &amp; simulação</h4><p>Construção do modelo quantitativo — capacidade, layout, fluxo — e teste de cenários antes de qualquer mudança física.</p></div>
-      <div class="step"><div class="n">03</div><h4>Implementação</h4><p>Plano de ação, ajuste de procedimentos e treinamento das equipes que vão operar a mudança no dia a dia.</p></div>
-      <div class="step"><div class="n">04</div><h4>Monitoramento</h4><p>KPIs e dashboards para acompanhar o resultado — e ajustar antes que o ganho se perca.</p></div>
+    <div class="dash-strip reveal">
+      <div class="dash-card">
+        <div class="dot-row"><span class="dot"></span> Radar COMEX &amp; Logística</div>
+        <h4>Comércio exterior e fluxo logístico</h4>
+        <p>Leitura contínua de indicadores de comércio exterior e movimentação logística nacional.</p>
+        <a class="btn btn-ghost btn-arrow" href="https://app.powerbi.com/view?r=eyJrIjoiMzkzZjg1NDctZTlhOC00ODAwLTgzNGItNTkxYmI1YmMxMTAwIiwidCI6IjU3MDFhMjMzLTY0YzEtNDFkZS1hYmI5LTI2MGU5MTMxZTAwMiJ9" target="_blank" rel="noopener">Abrir painel</a>
+      </div>
+      <div class="dash-card">
+        <div class="dot-row"><span class="dot"></span> Agroexportador</div>
+        <h4>Cadeia de exportação do agro</h4>
+        <p>Indicadores de originação, escoamento e exportação de grãos.</p>
+        <a class="btn btn-ghost btn-arrow" href="https://app.powerbi.com/view?r=eyJrIjoiMzkzZjg1NDctZTlhOC00ODAwLTgzNGItNTkxYmI1YmMxMTAwIiwidCI6IjU3MDFhMjMzLTY0YzEtNDFkZS1hYmI5LTI2MGU5MTMxZTAwMiJ9" target="_blank" rel="noopener">Abrir painel</a>
+      </div>
+      <div class="dash-card">
+        <div class="dot-row"><span class="dot"></span> Mineral Brasil &amp; Energia Brasil</div>
+        <h4>Mineração e energia</h4>
+        <p>Painel dedicado aos setores mineral e energético brasileiros.</p>
+        <a class="btn btn-ghost btn-arrow" href="https://app.powerbi.com/view?r=eyJrIjoiMzkzZjg1NDctZTlhOC00ODAwLTgzNGItNTkxYmI1YmMxMTAwIiwidCI6IjU3MDFhMjMzLTY0YzEtNDFkZS1hYmI5LTI2MGU5MTMxZTAwMiJ9" target="_blank" rel="noopener">Abrir painel</a>
+      </div>
     </div>
   </section>
 
@@ -448,7 +510,11 @@
 <footer>
   <div class="wrap">
     <span>© 2026 Dennis Caceta Consultoria em Gestão Empresarial. Todos os direitos reservados.</span>
-    <span>Porto de Santos · Brasil</span>
+    
+    <div class="footer-right">
+      <span>Porto de Santos · Brasil</span>
+      
+    </div>
   </div>
 </footer>
 
