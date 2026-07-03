@@ -52,7 +52,7 @@
   }
 
   *{ box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
+  html{ scroll-behavior:smooth; overflow-x:hidden; }
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
     *, *::before, *::after{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
@@ -60,6 +60,7 @@
 
   body{
     margin:0;
+    overflow-x:hidden;
     background:var(--ink);
     color:var(--white);
     font-family:'IBM Plex Sans', sans-serif;
@@ -373,7 +374,7 @@
   @media (max-width:640px){ .press-track img{ height:32px; } .press-track{ gap:56px; } }
 
   /* ============ LARGE BACKGROUND WATERMARK LOGOS (index only) ============ */
-  .watermark-group{ position:relative; z-index:0; }
+  .watermark-group{ position:relative; z-index:0; overflow:hidden; }
   .bg-watermark{ position:absolute; z-index:-1; pointer-events:none; opacity:0.055; width:auto; }
   @media (max-width:900px){ .bg-watermark{ opacity:0.035; } }
   @media (max-width:640px){ .bg-watermark{ display:none; } }
