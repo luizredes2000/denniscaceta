@@ -371,6 +371,13 @@
   @keyframes press-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
   @media (max-width:640px){ .press-track img{ height:32px; } .press-track{ gap:56px; } }
 
+  /* ============ PARTNER BADGE (index only, above footer) ============ */
+  .partner-badge{ max-width:var(--maxw); margin:0 auto; padding:0 28px 40px; text-align:center; }
+  .partner-badge .partner-label{ display:block; color:var(--fog); font-size:0.95rem; margin-bottom:18px; }
+  .partner-badge a{ display:inline-block; }
+  .partner-badge img{ height:76px; width:auto; opacity:0.95; transition:opacity .2s ease; }
+  .partner-badge a:hover img{ opacity:1; }
+
   /* reveal-on-scroll */
   .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
   .reveal.in{ opacity:1; transform:none; }
@@ -532,26 +539,6 @@
     </div>
   </section>
 
-  <section class="press-section wrap" id="imprensa-marquee" aria-label="Menções na imprensa especializada">
-    <div class="press-marquee reveal">
-      <div class="press-track">
-      <a href="#" aria-label="DNA USP"><img src="https://luizredes2000.github.io/denniscaceta/dnausp.png" alt="DNA USP" loading="lazy"></a>
-      <a href="https://www.guiamaritimo.com.br/especiais/portos/mercadorias-conteinerizadas-no-porto-de-santos-2025" target="_blank" rel="noopener" aria-label="Guia Marítimo"><img src="https://luizredes2000.github.io/denniscaceta/guiamaritimo.png" alt="Guia Marítimo" loading="lazy"></a>
-      <a href="https://jornalportuario.com.br/busca/?q=dennis%20caceta" target="_blank" rel="noopener" aria-label="Jornal Portuário"><img src="https://luizredes2000.github.io/denniscaceta/jornalportuario.png" alt="Jornal Portuário" loading="lazy"></a>
-      <a href="https://logweb.com.br/?s=dennis+caceta" target="_blank" rel="noopener" aria-label="LogWeb"><img src="https://luizredes2000.github.io/denniscaceta/logweb-logo-1.png" alt="LogWeb" loading="lazy"></a>
-      <a href="https://mundologistica.com.br/busca-portal" target="_blank" rel="noopener" aria-label="Mundo Logística"><img src="https://luizredes2000.github.io/denniscaceta/mundologistica-1.png" alt="Mundo Logística" loading="lazy"></a>
-      <a href="https://www.portosenavios.com.br/artigos/estudo-e-pesquisa/" target="_blank" rel="noopener" aria-label="Portos e Navios"><img src="https://luizredes2000.github.io/denniscaceta/portosenavios-2.png" alt="Portos e Navios" loading="lazy"></a>
-      <a href="#" aria-label="DNA USP"><img src="https://luizredes2000.github.io/denniscaceta/dnausp.png" alt="DNA USP" loading="lazy"></a>
-      <a href="https://www.guiamaritimo.com.br/especiais/portos/mercadorias-conteinerizadas-no-porto-de-santos-2025" target="_blank" rel="noopener" aria-label="Guia Marítimo"><img src="https://luizredes2000.github.io/denniscaceta/guiamaritimo.png" alt="Guia Marítimo" loading="lazy"></a>
-      <a href="https://jornalportuario.com.br/busca/?q=dennis%20caceta" target="_blank" rel="noopener" aria-label="Jornal Portuário"><img src="https://luizredes2000.github.io/denniscaceta/jornalportuario.png" alt="Jornal Portuário" loading="lazy"></a>
-      <a href="https://logweb.com.br/?s=dennis+caceta" target="_blank" rel="noopener" aria-label="LogWeb"><img src="https://luizredes2000.github.io/denniscaceta/logweb-logo-1.png" alt="LogWeb" loading="lazy"></a>
-      <a href="https://mundologistica.com.br/busca-portal" target="_blank" rel="noopener" aria-label="Mundo Logística"><img src="https://luizredes2000.github.io/denniscaceta/mundologistica-1.png" alt="Mundo Logística" loading="lazy"></a>
-      <a href="https://www.portosenavios.com.br/artigos/estudo-e-pesquisa/" target="_blank" rel="noopener" aria-label="Portos e Navios"><img src="https://luizredes2000.github.io/denniscaceta/portosenavios-2.png" alt="Portos e Navios" loading="lazy"></a>
-      </div>
-    </div>
-  </section>
-
-
   <section class="section-pad wrap" id="sobre-teaser">
     <div class="sec-head reveal">
       <p class="eyebrow">Quem conduz a operação</p>
@@ -581,6 +568,25 @@
     </div>
   </section>
 
+  <section class="press-section wrap" id="imprensa-marquee" aria-label="Menções na imprensa especializada">
+    <div class="press-marquee reveal">
+      <div class="press-track">
+      <a href="#" aria-label="DNA USP"><img src="https://luizredes2000.github.io/denniscaceta/dnausp.png" alt="DNA USP" loading="lazy"></a>
+      <a href="https://www.guiamaritimo.com.br/especiais/portos/mercadorias-conteinerizadas-no-porto-de-santos-2025" target="_blank" rel="noopener" aria-label="Guia Marítimo"><img src="https://luizredes2000.github.io/denniscaceta/guiamaritimo.png" alt="Guia Marítimo" loading="lazy"></a>
+      <a href="https://jornalportuario.com.br/busca/?q=dennis%20caceta" target="_blank" rel="noopener" aria-label="Jornal Portuário"><img src="https://luizredes2000.github.io/denniscaceta/jornalportuario.png" alt="Jornal Portuário" loading="lazy"></a>
+      <a href="https://logweb.com.br/?s=dennis+caceta" target="_blank" rel="noopener" aria-label="LogWeb"><img src="https://luizredes2000.github.io/denniscaceta/logweb-logo-1.png" alt="LogWeb" loading="lazy"></a>
+      <a href="https://mundologistica.com.br/busca-portal" target="_blank" rel="noopener" aria-label="Mundo Logística"><img src="https://luizredes2000.github.io/denniscaceta/mundologistica-1.png" alt="Mundo Logística" loading="lazy"></a>
+      <a href="https://www.portosenavios.com.br/artigos/estudo-e-pesquisa/" target="_blank" rel="noopener" aria-label="Portos e Navios"><img src="https://luizredes2000.github.io/denniscaceta/portosenavios-2.png" alt="Portos e Navios" loading="lazy"></a>
+      <a href="#" aria-label="DNA USP"><img src="https://luizredes2000.github.io/denniscaceta/dnausp.png" alt="DNA USP" loading="lazy"></a>
+      <a href="https://www.guiamaritimo.com.br/especiais/portos/mercadorias-conteinerizadas-no-porto-de-santos-2025" target="_blank" rel="noopener" aria-label="Guia Marítimo"><img src="https://luizredes2000.github.io/denniscaceta/guiamaritimo.png" alt="Guia Marítimo" loading="lazy"></a>
+      <a href="https://jornalportuario.com.br/busca/?q=dennis%20caceta" target="_blank" rel="noopener" aria-label="Jornal Portuário"><img src="https://luizredes2000.github.io/denniscaceta/jornalportuario.png" alt="Jornal Portuário" loading="lazy"></a>
+      <a href="https://logweb.com.br/?s=dennis+caceta" target="_blank" rel="noopener" aria-label="LogWeb"><img src="https://luizredes2000.github.io/denniscaceta/logweb-logo-1.png" alt="LogWeb" loading="lazy"></a>
+      <a href="https://mundologistica.com.br/busca-portal" target="_blank" rel="noopener" aria-label="Mundo Logística"><img src="https://luizredes2000.github.io/denniscaceta/mundologistica-1.png" alt="Mundo Logística" loading="lazy"></a>
+      <a href="https://www.portosenavios.com.br/artigos/estudo-e-pesquisa/" target="_blank" rel="noopener" aria-label="Portos e Navios"><img src="https://luizredes2000.github.io/denniscaceta/portosenavios-2.png" alt="Portos e Navios" loading="lazy"></a>
+      </div>
+    </div>
+  </section>
+
 
   <section class="contact wrap" id="contato-cta">
     <p class="eyebrow" style="justify-content:center;">Próxima parada</p>
@@ -594,6 +600,12 @@
 
 
 </main>
+<div class="partner-badge">
+    <span class="partner-label">Uma empresa com</span>
+    <a href="https://auspin.usp.br/dnausp/" target="_blank" rel="noopener" aria-label="DNA USP">
+      <img src="https://luizredes2000.github.io/denniscaceta/dnausp.png" alt="DNA USP">
+    </a>
+  </div>
 <footer>
   <div class="wrap">
     <span>© 2026 Dennis Caceta Consultoria em Gestão Empresarial. Todos os direitos reservados.</span>
