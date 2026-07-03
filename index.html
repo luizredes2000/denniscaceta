@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+
+<!-- Site desenvolvido por Luiz Redes — contato: luizredes2000@yahoo.com.br -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dennis Caceta | Consultoria em Gestão Empresarial</title>
@@ -351,6 +353,7 @@
   .footer-social img{ height:20px; width:auto; opacity:0.8; transition:opacity .2s ease, transform .15s ease; display:block; }
   .footer-social a:hover img{ opacity:1; transform:translateY(-2px); }
   .footer-right{ display:flex; align-items:center; gap:18px; }
+  .footer-right a:hover{ color:var(--teal); }
   .footer-cta{ display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono'; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.06em; background:var(--teal); color:var(--ink); padding:0.55em 1.1em; border-radius:999px; transition:background .2s ease, transform .15s ease; }
   .footer-cta img{ height:16px; width:auto; }
   .footer-cta:hover{ background:var(--amber-2); transform:translateY(-1px); }
@@ -387,6 +390,17 @@
   /* reveal-on-scroll */
   .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
   .reveal.in{ opacity:1; transform:none; }
+
+  /* ============ COOKIE CONSENT BAR (site-wide) ============ */
+  .cookie-bar{ position:fixed; left:0; right:0; bottom:0; z-index:200; background:var(--ink); border-top:1px solid var(--line); padding:18px 28px; box-shadow:0 -8px 24px rgba(0,0,0,0.35); transform:translateY(100%); transition:transform .35s ease; }
+  .cookie-bar.show{ transform:translateY(0); }
+  .cookie-bar-inner{ max-width:var(--maxw); margin:0 auto; display:flex; align-items:center; gap:24px; flex-wrap:wrap; }
+  .cookie-logo{ height:30px; width:auto; flex:none; }
+  .cookie-text{ flex:1; min-width:240px; font-family:'IBM Plex Sans', sans-serif; font-size:0.95rem; color:var(--white); margin:0; line-height:1.4; }
+  .cookie-highlight{ font-family:'IBM Plex Mono', monospace; color:var(--teal); border:1px solid var(--teal); border-radius:4px; padding:0.05em 0.5em; margin:0 0.15em; white-space:nowrap; }
+  .cookie-accept{ flex:none; background:var(--teal); color:var(--ink); border:none; font-family:'IBM Plex Mono', monospace; font-weight:700; font-size:0.78rem; letter-spacing:0.06em; padding:0.85em 1.9em; border-radius:999px; cursor:pointer; transition:background .2s ease, transform .15s ease; }
+  .cookie-accept:hover{ background:var(--amber-2); transform:translateY(-1px); }
+  @media (max-width:700px){ .cookie-bar-inner{ flex-direction:column; align-items:flex-start; } .cookie-accept{ align-self:flex-end; } }
 
 </style>
 </head>
@@ -629,7 +643,7 @@
       <a href="#" target="_blank" rel="noopener" aria-label="X (Twitter)"><img src="https://luizredes2000.github.io/denniscaceta/x-2.png" alt="X"></a>
     </div>
     <div class="footer-right">
-      <span>Porto de Santos · Brasil</span>
+      <a href="politica-de-privacidade.html">Política de Privacidade</a>
       <a class="footer-cta" href="https://wa.me/5513997492941" target="_blank" rel="noopener">
       <img src="https://luizredes2000.github.io/denniscaceta/fale-conosco.png" alt="">
       Fale conosco
@@ -637,6 +651,14 @@
     </div>
   </div>
 </footer>
+
+<div class="cookie-bar" id="cookieBar">
+  <div class="cookie-bar-inner">
+    <img class="cookie-logo" src="https://denniscaceta.com/logo_denniscaceta-1.png" alt="Dennis Caceta">
+    <p class="cookie-text">Este site utiliza <span class="cookie-highlight">cookies</span> para que você possa ter a melhor experiência.</p>
+    <button class="cookie-accept" id="cookieAccept">ACEITAR</button>
+  </div>
+</div>
 
 <script>
   const toggle = document.getElementById('navToggle');
@@ -669,6 +691,22 @@
   } else {
     revealEls.forEach(el => el.classList.add('in'));
   }
+
+  (function() {
+    const KEY = 'dc_cookie_consent';
+    const bar = document.getElementById('cookieBar');
+    const btn = document.getElementById('cookieAccept');
+    if (!bar || !btn) return;
+    let alreadyAccepted = false;
+    try { alreadyAccepted = localStorage.getItem(KEY) === 'accepted'; } catch (e) {}
+    if (!alreadyAccepted) {
+      setTimeout(() => bar.classList.add('show'), 400);
+    }
+    btn.addEventListener('click', () => {
+      try { localStorage.setItem(KEY, 'accepted'); } catch (e) {}
+      bar.classList.remove('show');
+    });
+  })();
 </script>
 </body>
 </html>
