@@ -351,13 +351,14 @@
   .footer-social img{ height:20px; width:auto; opacity:0.8; transition:opacity .2s ease, transform .15s ease; display:block; }
   .footer-social a:hover img{ opacity:1; transform:translateY(-2px); }
   .footer-right{ display:flex; align-items:center; gap:18px; }
+  .footer-right a:hover{ color:var(--teal); }
   .footer-cta{ display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono'; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.06em; background:var(--teal); color:var(--ink); padding:0.55em 1.1em; border-radius:999px; transition:background .2s ease, transform .15s ease; }
   .footer-cta img{ height:16px; width:auto; }
   .footer-cta:hover{ background:var(--amber-2); transform:translateY(-1px); }
   @media (max-width:640px){ footer .wrap{ justify-content:center; text-align:center; } }
 
   /* ============ PRESS LOGO CAROUSEL (index only) ============ */
-  .press-section{ padding:16px 0; margin:-40px 0; overflow:hidden; }
+  .press-section{ padding:16px 0; margin:-22px 0 -40px; overflow:hidden; }
   .press-marquee{
     overflow:hidden; position:relative; padding:8px 0; width:100%; max-width:100%;
     -webkit-mask-image:linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent);
@@ -371,6 +372,12 @@
   @keyframes press-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
   @media (max-width:640px){ .press-track img{ height:32px; } .press-track{ gap:56px; } }
 
+  /* ============ LARGE BACKGROUND WATERMARK LOGOS (index only) ============ */
+  .watermark-group{ position:relative; z-index:0; }
+  .bg-watermark{ position:absolute; z-index:-1; pointer-events:none; opacity:0.055; width:auto; }
+  @media (max-width:900px){ .bg-watermark{ opacity:0.035; } }
+  @media (max-width:640px){ .bg-watermark{ display:none; } }
+
   /* ============ PARTNER BADGE (index only, above footer) ============ */
   .partner-badge{ max-width:var(--maxw); margin:0 auto; padding:0 28px 40px; text-align:center; }
   .partner-badge .partner-label{ display:block; color:var(--fog); font-size:0.95rem; margin-bottom:18px; }
@@ -381,6 +388,17 @@
   /* reveal-on-scroll */
   .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
   .reveal.in{ opacity:1; transform:none; }
+
+  /* ============ COOKIE CONSENT BAR (site-wide) ============ */
+  .cookie-bar{ position:fixed; left:0; right:0; bottom:0; z-index:200; background:var(--ink); border-top:1px solid var(--line); padding:18px 28px; box-shadow:0 -8px 24px rgba(0,0,0,0.35); transform:translateY(100%); transition:transform .35s ease; }
+  .cookie-bar.show{ transform:translateY(0); }
+  .cookie-bar-inner{ max-width:var(--maxw); margin:0 auto; display:flex; align-items:center; gap:24px; flex-wrap:wrap; }
+  .cookie-logo{ height:30px; width:auto; flex:none; }
+  .cookie-text{ flex:1; min-width:240px; font-family:'IBM Plex Sans', sans-serif; font-size:0.95rem; color:var(--white); margin:0; line-height:1.4; }
+  .cookie-highlight{ font-family:'IBM Plex Mono', monospace; color:var(--teal); border:1px solid var(--teal); border-radius:4px; padding:0.05em 0.5em; margin:0 0.15em; white-space:nowrap; }
+  .cookie-accept{ flex:none; background:var(--teal); color:var(--ink); border:none; font-family:'IBM Plex Mono', monospace; font-weight:700; font-size:0.78rem; letter-spacing:0.06em; padding:0.85em 1.9em; border-radius:999px; cursor:pointer; transition:background .2s ease, transform .15s ease; }
+  .cookie-accept:hover{ background:var(--amber-2); transform:translateY(-1px); }
+  @media (max-width:700px){ .cookie-bar-inner{ flex-direction:column; align-items:flex-start; } .cookie-accept{ align-self:flex-end; } }
 
 </style>
 </head>
@@ -535,11 +553,19 @@
     <span>© 2026 Dennis Caceta Consultoria em Gestão Empresarial. Todos os direitos reservados.</span>
     
     <div class="footer-right">
-      <span>Porto de Santos · Brasil</span>
+      <a href="politica-de-privacidade.html">Política de Privacidade</a>
       
     </div>
   </div>
 </footer>
+
+<div class="cookie-bar" id="cookieBar">
+  <div class="cookie-bar-inner">
+    <img class="cookie-logo" src="https://denniscaceta.com/logo_denniscaceta-1.png" alt="Dennis Caceta">
+    <p class="cookie-text">Este site utiliza <span class="cookie-highlight">cookies</span> para que você possa ter a melhor experiência.</p>
+    <button class="cookie-accept" id="cookieAccept">ACEITAR</button>
+  </div>
+</div>
 
 <script>
   const toggle = document.getElementById('navToggle');
@@ -572,6 +598,22 @@
   } else {
     revealEls.forEach(el => el.classList.add('in'));
   }
+
+  (function() {
+    const KEY = 'dc_cookie_consent';
+    const bar = document.getElementById('cookieBar');
+    const btn = document.getElementById('cookieAccept');
+    if (!bar || !btn) return;
+    let alreadyAccepted = false;
+    try { alreadyAccepted = localStorage.getItem(KEY) === 'accepted'; } catch (e) {}
+    if (!alreadyAccepted) {
+      setTimeout(() => bar.classList.add('show'), 400);
+    }
+    btn.addEventListener('click', () => {
+      try { localStorage.setItem(KEY, 'accepted'); } catch (e) {}
+      bar.classList.remove('show');
+    });
+  })();
 </script>
 </body>
 </html>
