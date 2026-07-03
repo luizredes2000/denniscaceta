@@ -371,6 +371,12 @@
   @keyframes press-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
   @media (max-width:640px){ .press-track img{ height:32px; } .press-track{ gap:56px; } }
 
+  /* ============ LARGE BACKGROUND WATERMARK LOGOS (index only) ============ */
+  .watermark-group{ position:relative; z-index:0; }
+  .bg-watermark{ position:absolute; z-index:-1; pointer-events:none; opacity:0.055; width:auto; }
+  @media (max-width:900px){ .bg-watermark{ opacity:0.035; } }
+  @media (max-width:640px){ .bg-watermark{ display:none; } }
+
   /* ============ PARTNER BADGE (index only, above footer) ============ */
   .partner-badge{ max-width:var(--maxw); margin:0 auto; padding:0 28px 40px; text-align:center; }
   .partner-badge .partner-label{ display:block; color:var(--fog); font-size:0.95rem; margin-bottom:18px; }
@@ -403,6 +409,8 @@
 </header>
 <main id="top">
 
+  <div class="watermark-group">
+  <img class="bg-watermark" src="https://luizredes2000.github.io/denniscaceta/logo_denniscaceta-1.png" alt="" aria-hidden="true" style="height:1100px; top:40px; right:-320px;">
   <section class="hero wrap">
 
     <div class="radar-field" aria-hidden="true">
@@ -462,6 +470,7 @@
       <div class="manifest-row"><span class="tag">06</span><span class="desc">Processos manuais, dispersos ou pouco padronizados</span><span class="stamp">Processo</span></div>
     </div>
   </section>
+  </div>
 
   <section class="section-pad wrap" id="servicos-teaser">
     <div class="sec-head reveal">
@@ -479,6 +488,8 @@
     </div>
   </section>
 
+  <div class="watermark-group">
+  <img class="bg-watermark" src="https://luizredes2000.github.io/denniscaceta/logo_denniscaceta-1.png" alt="" aria-hidden="true" style="height:1000px; top:0px; right:-300px;">
   <section class="section-pad wrap" id="dashboards">
     <div class="sec-head reveal">
       <p class="eyebrow">Em operação agora</p>
@@ -538,6 +549,7 @@
       <a class="btn btn-ghost btn-arrow" href="projetos.html">Ver o diário de bordo completo</a>
     </div>
   </section>
+  </div>
 
   <section class="section-pad wrap" id="sobre-teaser">
     <div class="sec-head reveal">
@@ -587,6 +599,8 @@
     </div>
   </section>
 
+  <div class="watermark-group">
+  <img class="bg-watermark" src="https://luizredes2000.github.io/denniscaceta/logo_denniscaceta-1.png" alt="" aria-hidden="true" style="height:820px; top:-60px; right:-280px;">
 
   <section class="contact wrap" id="contato-cta">
     <p class="eyebrow" style="justify-content:center;">Próxima parada</p>
@@ -598,6 +612,7 @@
     </div>
   </section>
 
+  </div>
 
 </main>
 <div class="partner-badge">
