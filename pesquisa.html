@@ -212,8 +212,8 @@
   .sec-head h2{ font-size:clamp(1.9rem,4vw,2.7rem); margin-top:14px; color:var(--white); }
   .sec-head p{ color:var(--fog); margin-top:16px; font-size:1.02rem; }
   .sec-head .tail{ margin-top:22px; }
-  .section-pad{ padding:100px 0; border-top:1px solid var(--line); }
-  .section-pad.tight{ padding:80px 0; }
+  .section-pad{ padding:64px 0; border-top:1px solid var(--line); }
+  .section-pad.tight{ padding:52px 0; }
 
   /* ============ CHECKLIST (problem signals) ============ */
   .manifest{ border:1px solid var(--line); background:var(--ink-2); }
@@ -356,6 +356,28 @@
   .footer-cta:hover{ background:var(--amber-2); transform:translateY(-1px); }
   @media (max-width:640px){ footer .wrap{ justify-content:center; text-align:center; } }
 
+  /* ============ PRESS LOGO CAROUSEL (index only) ============ */
+  .press-section{ padding:16px 0; margin:-40px 0; overflow:hidden; }
+  .press-marquee{
+    overflow:hidden; position:relative; padding:8px 0; width:100%; max-width:100%;
+    -webkit-mask-image:linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent);
+    mask-image:linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent);
+  }
+  .press-track{ display:flex; align-items:center; gap:88px; width:max-content; animation:press-scroll 32s linear infinite; }
+  .press-marquee:hover .press-track{ animation-play-state:paused; }
+  .press-track a{ flex:none; display:flex; align-items:center; }
+  .press-track img{ height:42px; width:auto; opacity:0.7; filter:grayscale(1) brightness(1.6); transition:opacity .2s ease; }
+  .press-track a:hover img{ opacity:1; }
+  @keyframes press-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  @media (max-width:640px){ .press-track img{ height:32px; } .press-track{ gap:56px; } }
+
+  /* ============ PARTNER BADGE (index only, above footer) ============ */
+  .partner-badge{ max-width:var(--maxw); margin:0 auto; padding:0 28px 40px; text-align:center; }
+  .partner-badge .partner-label{ display:block; color:var(--fog); font-size:0.95rem; margin-bottom:18px; }
+  .partner-badge a{ display:inline-block; }
+  .partner-badge img{ height:76px; width:auto; opacity:0.95; transition:opacity .2s ease; }
+  .partner-badge a:hover img{ opacity:1; }
+
   /* reveal-on-scroll */
   .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
   .reveal.in{ opacity:1; transform:none; }
@@ -468,6 +490,7 @@
 
 
 </main>
+
 <footer>
   <div class="wrap">
     <span>© 2026 Dennis Caceta Consultoria em Gestão Empresarial. Todos os direitos reservados.</span>
